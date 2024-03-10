@@ -1,0 +1,10 @@
+.App{
+    background-color: #fcfcfc;
+    background-image: url("../assets/pictures/ohb-wallpaper.jpg");
+    width: 100%;
+    height: 20vh;
+}
+.main {
+    background-color: #fcfcfc;
+    margin-top: 2%;
+}
