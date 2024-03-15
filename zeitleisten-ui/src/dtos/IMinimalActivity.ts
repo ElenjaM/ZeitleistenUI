@@ -1,9 +1,9 @@
 interface IMinimalActivity
 {
-    Id : number;
-    ActivityType : string;
-    StartDate : Date;
-    EndDate : Date;
-    SatelliteId : string;
-    OrderId : number;
+    id : number;
+    activityType : string;
+    startDate : Date;
+    endDate : Date;
+    satelliteId : string;
+    orderId : number;
 }
