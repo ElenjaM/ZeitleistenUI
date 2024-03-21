@@ -11,6 +11,7 @@ import { BY_SATELLITE } from '../../util/Constants';
 import FilterElement from '../util/FilterElement';
 import { colours } from '../../style/colours';
 import ActivitySelection from './ActivitySelection';
+import { ISatelliteTimelineProps } from '../../dtos/IProperties';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const [showAcquisitions, setShowAcquisitions] = useState(true);
   const [showSlews, setShowSlews] = useState(true);
   const [viewOption, setViewOption] = useState(BY_SATELLITE);
+  const [filter, setFilter] = useState("")
 
   useEffect(() => {
     getSatelliteData(viewOption, showAcquisitions, showSlews).then(({ groups, items }) => {
@@ -31,9 +33,9 @@ function App() {
   return (
     <div className='App'>
       <Box bgColor={colours.secondary} color={colours.seasalt} p='1%' w='100%' h='45%' >
-        <Stack spacing='1%' direction='row' align='center' marginLeft='2.5%' w='100%' h='100%'>
+        <Stack spacing='1%' direction='row' align='center' justifyContent='flex-start' marginLeft='2.5%' w='100%' h='100%'>
           <TitlepageBar />
-          <FilterElement />
+          <FilterElement setFilter={setFilter} filter={filter} viewOption={viewOption} setGroups={setGroups} setItems={setItems} />
           <ViewSelection setGroups={setGroups} setItems={setItems} setViewOption={setViewOption} showAcquisitions={showAcquisitions} showSlews={showSlews} />
           <Box width="50%" marginEnd='4%' alignItems={'flex-end'}>
             <ActivitySelection setShowAcquisitions={setShowAcquisitions} setShowSlews={setShowSlews} showAcquisitions={showAcquisitions} showSlews={showSlews} />
@@ -41,7 +43,7 @@ function App() {
         </Stack>
       </Box>
       <Center w='100%' h='50%' bg={colours.secondary} color={colours.seasalt} opacity='50%' alignItems={'center'} justifyContent={'flex-start'}>
-        <MenuDrawer />
+        <MenuDrawer setFilter={setFilter} filter={filter} viewOption={viewOption} setGroups={setGroups} setItems={setItems} />
       </Center>
       <SatelliteTimeline groups={groups} items={items} />
     </div>

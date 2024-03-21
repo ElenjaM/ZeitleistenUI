@@ -1,7 +1,8 @@
 import { Select } from '@chakra-ui/react'
 import getSatelliteData from "../util/Selection";
 import { colours } from '../../style/colours';
-import { ISelectionProps } from '../../dtos/ISelectionProps';
+import { ISelectionProps } from '../../dtos/IProperties';
+import { BY_ORDER, BY_SATELLITE } from '../../util/Constants';
 
 const ViewSelection: React.FC<ISelectionProps> = ({ setGroups, setItems, setViewOption, showAcquisitions, showSlews }: ISelectionProps) => {
 
@@ -21,8 +22,8 @@ const ViewSelection: React.FC<ISelectionProps> = ({ setGroups, setItems, setView
             w='15%'
             color={colours.seasalt}
             onChange={(e) => handleOptionChange(e.target.value, showAcquisitions, showSlews)}>
-            <option style={{ color: colours.secondary, backgroundColor: colours.seasalt }} value='bySatellite'>Timeline by Satellite </option>
-            <option style={{ color: colours.secondary, backgroundColor: colours.seasalt }} value='byOrder'>Timeline by Order</option>
+            <option style={{ color: colours.secondary, backgroundColor: colours.seasalt }} value={BY_SATELLITE}>Timeline by Satellite </option>
+            <option style={{ color: colours.secondary, backgroundColor: colours.seasalt }} value={BY_ORDER}>Timeline by Order</option>
         </Select>
     );
 }

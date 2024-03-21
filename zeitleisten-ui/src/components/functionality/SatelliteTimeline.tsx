@@ -4,6 +4,7 @@ import moment from 'moment'
 import React, { useEffect } from 'react';
 import { colours } from '../../style/colours';
 import { fetchColor } from '../util/generalFunctions';
+import { ISatelliteTimelineProps } from '../../dtos/IProperties';
 
 const SatelliteTimeline: React.FC<ISatelliteTimelineProps> = ({ groups, items }) => {
 

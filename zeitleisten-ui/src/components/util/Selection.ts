@@ -3,6 +3,7 @@ import { getAllActivities } from "../../services/ActivityService";
 import { fetchColor, fetchTitle } from "./generalFunctions";
 import moment from "moment";
 import { BY_ORDER, BY_SATELLITE } from "../../util/Constants";
+import { ISatelliteTimelineProps } from "../../dtos/IProperties";
 
 async function getSatelliteData(option: string, showAcquisitions: boolean, showSlews: boolean) {
     let groups: ISatelliteTimelineProps['groups'] = [];
@@ -31,7 +32,33 @@ async function getSatelliteData(option: string, showAcquisitions: boolean, showS
 }
 export default getSatelliteData;
 
-// -------------------------- functions used in getSatelliteData --------------------------
+
+export async function getSatelliteDataBySearchResult(filteredActivities: IMinimalActivity[], option: string, showAcquisitions: boolean, showSlews: boolean) {
+    let groups: ISatelliteTimelineProps['groups'] = [];
+    let items: ISatelliteTimelineProps['items'] = [];
+
+    if ((option === BY_SATELLITE) && (!isNull(filteredActivities))) {
+        const activitiesBySatelliteId = groupBy(filteredActivities, 'satelliteId');
+
+        groups = fillGroups(activitiesBySatelliteId);
+        items = fillItems(activitiesBySatelliteId, showAcquisitions, showSlews);
+        // Map each activity within a group to a timeline item
+    }
+    else if (option === BY_ORDER && !isNull(filteredActivities)) {
+        const activitiesByOrderId = groupBy(filteredActivities, 'orderId');
+
+        groups = fillGroups(activitiesByOrderId);
+        items = fillItems(activitiesByOrderId, showAcquisitions, showSlews);
+    }
+
+    else {
+        groups = [];
+        items = [];
+        console.log('An error ocurred while fetching the data. Please try again.');
+    }
+    return { groups, items };
+}
+// -------------------------- functions used in getSatelliteData and getSatelliteDataBySearchResult --------------------------
 
 export function fillGroups(activities: Dictionary<IMinimalActivity[]>) {
     const groups = Object.keys(activities).map(filterProperty => (
