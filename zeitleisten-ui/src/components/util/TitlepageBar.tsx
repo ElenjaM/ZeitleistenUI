@@ -1,24 +1,21 @@
-import { Stack, IconButton, Box, Tooltip, Input } from "@chakra-ui/react";
+import { IconButton, Tooltip } from "@chakra-ui/react";
 import SatelliteTimelineIcon from "../../assets/icons/SatelliteTimelineIcon";
-import FilterElement from "./Filter/FilterElement";
+import { colours } from "../../style/colours";
 
 function TitlepageBar() {
     return (
-    <Box bgColor={'secondary'} p='1%' w='100%' h='45%' color={'seasalt'} >
-       <Stack spacing='2%' direction='row' align='center' marginLeft='2.5%' w='100%' h='100%'>
-            <Tooltip label='Satline Startpage' bgColor='primary'>
-                <IconButton 
-                    aria-label='Satellite Activities Timeline' 
+        <>
+            <Tooltip label='SATLINE Startpage' bgColor={colours.primary}>
+                <IconButton
+                    aria-label='Satellite Activities Timeline'
                     size={'lg'}
                     variant={'ghost'}
-                    colorScheme='seasalt'
-                    icon={<SatelliteTimelineIcon style={{ width: '100%', height: '100%' }} />} 
-                    onClick={() => { console.log('Icon clicked!'); }}>
+                    colorScheme={colours.seasalt}
+                    icon={<SatelliteTimelineIcon style={{ width: '100%', height: '100%' }} />}
+                    onClick={() => window.location.reload()}>
                 </IconButton>
-            </Tooltip>    
-            <FilterElement />      
-        </Stack>  
-    </Box>
+            </Tooltip>
+        </>
     );
 }
 export default TitlepageBar

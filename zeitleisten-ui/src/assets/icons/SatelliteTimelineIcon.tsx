@@ -3,7 +3,7 @@ function SatelliteTimelineIcon({ style }: { style: object }) {
         <svg xmlns="http://www.w3.org/2000/svg" width="44.2422mm" height="44.2422mm" viewBox="0 0 209 209" style={style}> 
 
           <path id="Auswahl"
-                fill="currentColor" stroke="currentColor" stroke-width="0%"
+                fill="currentColor" stroke="currentColor" strokeWidth="0%"
                 d="M 107.04,14.58
                    C 118.86,13.07 119.93,26.51 110.98,29.11
                      105.58,30.68 99.74,25.91 100.74,20.99
