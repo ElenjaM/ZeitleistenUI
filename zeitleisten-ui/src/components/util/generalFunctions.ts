@@ -23,10 +23,11 @@ export function fetchColor(activityType: string) {
 
 export async function filterActivities(searchTerm: string) {
   const allActivities = await getAllActivities();
-  const results: IMinimalActivity[] = allActivities.filter(activity =>
-    Object.values(activity).some(value =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
+  const results = allActivities.filter(activity =>
+    activity.id.toString() === (searchTerm.toLowerCase()) ||
+    activity.satelliteId.toString().toLowerCase() === (searchTerm.toLowerCase()) ||
+    activity.orderId.toString().toLowerCase() === (searchTerm.toLowerCase()) ||
+    activity.activityType.toString().toLowerCase().includes(searchTerm.toLowerCase())
   );
   return results;
 }

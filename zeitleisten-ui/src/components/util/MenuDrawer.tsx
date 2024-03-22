@@ -1,12 +1,13 @@
 import { HamburgerIcon, SettingsIcon } from '@chakra-ui/icons'
 import {
   Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerFooter,
-  useDisclosure, IconButton, Input, Box, FormLabel, Stack, Button,
+  useDisclosure, IconButton, Box, FormLabel, Stack,
 } from '@chakra-ui/react'
 import { colours } from '../../style/colours'
 import { IFilterProps } from '../../dtos/IProperties'
 import { filterActivities } from './generalFunctions'
 import { getSatelliteDataBySearchResult } from './Selection'
+import { MenuButton, MenuInput } from '../../style/StyledComponents'
 
 const MenuDrawer: React.FC<IFilterProps> = ({ setFilter, filter, viewOption, setGroups, setItems }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -27,13 +28,11 @@ const MenuDrawer: React.FC<IFilterProps> = ({ setFilter, filter, viewOption, set
         <DrawerContent>
           <DrawerHeader borderBottomWidth='1px'> Welcome to SATLINE</DrawerHeader>
           <DrawerBody>
-            <Stack spacing='24px'>
+            <Stack spacing='10%'>
               <Box>
                 <FormLabel>Find by</FormLabel>
-                <Input
+                <MenuInput
                   focusBorderColor={colours.silverblue}
-                  borderWidth={2}
-                  color={colours.secondary}
                   id='filterProperty'
                   placeholder='Satellite ID / Order ID / Activity ID'
                   value={filter}
@@ -43,7 +42,7 @@ const MenuDrawer: React.FC<IFilterProps> = ({ setFilter, filter, viewOption, set
             </Stack>
           </DrawerBody>
           <DrawerFooter borderTopWidth='1px'>
-            <Button width='50%' leftIcon={<SettingsIcon />} bgColor={colours.sand} >Settings</Button>
+            <MenuButton width='50%' leftIcon={<SettingsIcon />} >Settings</MenuButton>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

@@ -1,5 +1,4 @@
 
-import { Box, Center, Stack } from '@chakra-ui/react'
 import SatelliteTimeline from './SatelliteTimeline'
 import "../../style/App.css";
 import MenuDrawer from '../util/MenuDrawer';
@@ -9,9 +8,9 @@ import { useEffect, useState } from 'react';
 import getSatelliteData from '../util/Selection';
 import { BY_SATELLITE } from '../../util/Constants';
 import FilterElement from '../util/FilterElement';
-import { colours } from '../../style/colours';
 import ActivitySelection from './ActivitySelection';
 import { ISatelliteTimelineProps } from '../../dtos/IProperties';
+import { AppBox, AppBox2, AppCenter, AppStack } from '../../style/StyledComponents';
 
 
 function App() {
@@ -32,19 +31,19 @@ function App() {
 
   return (
     <div className='App'>
-      <Box bgColor={colours.secondary} color={colours.seasalt} p='1%' w='100%' h='45%' >
-        <Stack spacing='1%' direction='row' align='center' justifyContent='flex-start' marginLeft='2.5%' w='100%' h='100%'>
+      <AppBox >
+        <AppStack spacing='1%' direction='row' align='center'>
           <TitlepageBar />
           <FilterElement setFilter={setFilter} filter={filter} viewOption={viewOption} setGroups={setGroups} setItems={setItems} />
           <ViewSelection setGroups={setGroups} setItems={setItems} setViewOption={setViewOption} showAcquisitions={showAcquisitions} showSlews={showSlews} />
-          <Box width="50%" marginEnd='4%' alignItems={'flex-end'}>
+          <AppBox2 marginEnd='4%'>
             <ActivitySelection setShowAcquisitions={setShowAcquisitions} setShowSlews={setShowSlews} showAcquisitions={showAcquisitions} showSlews={showSlews} />
-          </Box>
-        </Stack>
-      </Box>
-      <Center w='100%' h='50%' bg={colours.secondary} color={colours.seasalt} opacity='50%' alignItems={'center'} justifyContent={'flex-start'}>
+          </AppBox2>
+        </AppStack>
+      </AppBox>
+      <AppCenter >
         <MenuDrawer setFilter={setFilter} filter={filter} viewOption={viewOption} setGroups={setGroups} setItems={setItems} />
-      </Center>
+      </AppCenter>
       <SatelliteTimeline groups={groups} items={items} />
     </div>
   );
